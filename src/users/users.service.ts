@@ -60,7 +60,7 @@ export class UsersService implements OnModuleInit {
   }
 
   checkPassword(hash: string, plain: string) {
-    return compareSync(plain, hash);
+    return compareSync(hash, plain);
   }
 
 

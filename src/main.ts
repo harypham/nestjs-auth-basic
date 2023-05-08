@@ -7,6 +7,7 @@ import cookieParser from 'cookie-parser';
 import session from 'express-session';
 import MongoStore from 'connect-mongo';
 import ms from 'ms';
+import passport from "passport"
 
 async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(
@@ -35,6 +36,9 @@ async function bootstrap() {
     })
   }));
 
+  //config passport
+  app.use(passport.initialize())
+  app.use(passport.session())
 
   await app.listen(port);
 }

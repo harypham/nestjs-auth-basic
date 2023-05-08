@@ -16,14 +16,14 @@
 
 <body>
     <div class="login-container">
-        <form>
+        <form method="POST" action="/login">
             <fieldset class="border rounded-3 p-3">
                 <legend class="float-none w-auto px-3">Login Form</legend>
 
                 <!-- Email input -->
                 <div class="form-outline mb-4">
                     <label class="form-label" for="emailInput">Email address</label>
-                    <input type="email" name="email" class="form-control" id="emailInput" />
+                    <input type="text" name="username" class="form-control" id="emailInput" />
                 </div>
 
                 <!-- Password input -->
@@ -33,7 +33,7 @@
                 </div>
 
                 <!-- Submit button -->
-                <button type="button" class="btn btn-primary btn-block mb-4">Sign in</button>
+                <button type="submit" class="btn btn-primary btn-block mb-4">Sign in</button>
 
             </fieldset>
         </form>

@@ -8,10 +8,24 @@
 
 </head>
 
-<body>
+<body style="padding: 50">
     <h1>A Simple Homepage</h1>
     <div>
-        <button>Login</button>
+        <% if(isAuthenticated){ %>
+            <form action="/logout" method="POST">
+                <button style="margin-right: 20; cursor: pointer;">Logout</button>
+            </form>
+
+            <form action="/user" method="GET">
+                <button style="cursor: pointer;">View Users</button>
+            </form>
+            <% } else{ %>
+                <form action="/login" method="GET">
+                    <button style="cursor: pointer;">Login</button>
+                </form>
+
+                <% } %>
+
     </div>
 </body>
 

@@ -1,10 +1,8 @@
 import { Injectable, OnModuleInit } from '@nestjs/common';
-import { CreateUserDto } from './dto/create-user.dto';
-import { UpdateUserDto } from './dto/update-user.dto';
 import { Model } from 'mongoose';
 import { InjectModel } from '@nestjs/mongoose';
 import { User } from './schemas/user.schema';
-import { genSaltSync, hashSync } from 'bcryptjs';
+import { genSaltSync, hashSync, compareSync } from 'bcryptjs';
 import { ConfigService } from '@nestjs/config';
 
 
@@ -52,23 +50,18 @@ export class UsersService implements OnModuleInit {
     }
   }
 
-  create(createUserDto: CreateUserDto) {
-    return 'This action adds a new user';
-  }
 
   async findAll() {
     return await this.userModel.find({});
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} user`;
+  async findByEmail(email: string) {
+    return await this.userModel.findOne({ email });
   }
 
-  update(id: number, updateUserDto: UpdateUserDto) {
-    return `This action updates a #${id} user`;
+  checkPassword(hash: string, plain: string) {
+    return compareSync(plain, hash);
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} user`;
-  }
+
 }

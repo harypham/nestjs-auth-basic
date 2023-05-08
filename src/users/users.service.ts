@@ -22,11 +22,33 @@ export class UsersService implements OnModuleInit {
     if (count === 0) {
       const salt = genSaltSync(10);
       const hash = hashSync(this.configService.get<string>("INIT_USER_PASSWORD"), salt);
-      await this.userModel.create({
-        name: "Eric",
-        email: "admin@gmail.com",
-        password: hash
-      })
+      await this.userModel.insertMany([
+        {
+          name: "Eric",
+          email: "admin@gmail.com",
+          password: hash
+        },
+        {
+          name: "User",
+          email: "user@gmail.com",
+          password: hash
+        },
+        {
+          name: "User 1",
+          email: "user1@gmail.com",
+          password: hash
+        },
+        {
+          name: "User 2",
+          email: "user2@gmail.com",
+          password: hash
+        },
+        {
+          name: "User 3",
+          email: "user3@gmail.com",
+          password: hash
+        }
+      ])
     }
   }
 
@@ -34,8 +56,8 @@ export class UsersService implements OnModuleInit {
     return 'This action adds a new user';
   }
 
-  findAll() {
-    return `This action returns all users`;
+  async findAll() {
+    return await this.userModel.find({});
   }
 
   findOne(id: number) {
